@@ -5,11 +5,16 @@ import model.enums.Operation;
 import model.exceptions.UserAnswerException;
 import model.exceptions.UserInputException;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInput {
     private static final Scanner scanner = new Scanner(System.in);
+    private static boolean exceptionThrown = false;
+    private static String personName;
 
     public static Operation getInputOperation() throws UserInputException {
         try {
@@ -24,6 +29,10 @@ public class UserInput {
         } catch (IllegalArgumentException e) {
             throw new UserInputException(TextColor.ANSI_RED + "Error: Operation must be one of these: SUM | SUBTRACT | MULTIPLY | DIVIDE." + TextColor.ANSI_RESET);
         }
+    }
+
+    public static boolean getExceptionThrown() {
+        return exceptionThrown;
     }
 
     public static double getFirstNumber() throws UserInputException {
@@ -41,6 +50,7 @@ public class UserInput {
         try {
             return scanner.nextDouble();
         } catch (InputMismatchException e) {
+            scanner.nextLine();
             throw new UserInputException(TextColor.ANSI_RED + "Error: Number must be a valid value." + TextColor.ANSI_RESET);
         }
     }
@@ -50,8 +60,8 @@ public class UserInput {
         System.out.println(" SUM | SUBTRACT | MULTIPLY | DIVIDE\n");
     }
 
-    public static void introduceCalculator() {
-        System.out.println("\nWelcome to the " + TextColor.ANSI_BLUE + "Calculator " + TextColor.ANSI_RESET + "project!");
+    public static void introduceCalculator(String name) {
+        System.out.println("\nWelcome to the " + TextColor.ANSI_BLUE + "Calculator " + TextColor.ANSI_RESET + "project, " + name + "!");
     }
 
     public static void printResult(double number1, double number2, Operation operation) {
@@ -67,14 +77,43 @@ public class UserInput {
             throw new UserAnswerException(TextColor.ANSI_RED + "Error: Answer must be either 'Y' or 'N'.\nEnding program..." + TextColor.ANSI_RESET);
         }
         if (answer == 'N') {
-            System.out.println("\nCalculations: ");
-            for(int x = 0; x<Calculator.getCalculations().size(); x++){
-                System.out.println("\n#" + (x+1) + "\n" + Calculator.getCalculations().get(x));
+            System.out.println("\n" + personName + " Calculations: ");
+            for (int x = 0; x < Calculator.getCalculations().size(); x++) {
+                System.out.println("\n#" + (x + 1) + "\n" + Calculator.getCalculations().get(x));
             }
             System.out.println(TextColor.ANSI_RED + "\nEnding program..." + TextColor.ANSI_RESET);
             scanner.close();
         }
         return answer;
+    }
+
+    public static String getPersonName() throws UserInputException {
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        if (!name.isEmpty()) {
+            exceptionThrown = false;
+            personName = name;
+            return name;
+        }
+        exceptionThrown = true;
+        throw new UserInputException(TextColor.ANSI_RED + "Error: Name can't be blank." + TextColor.ANSI_RESET);
+    }
+
+    public static LocalDate getBirthDate() throws UserInputException {
+        System.out.print("Enter your birth date (dd/MM/yyyy): ");
+        try {
+            String date = scanner.nextLine();
+            LocalDate formattedDate = FormatDate.convertToLocalDate(date);
+            if(Period.between(formattedDate, LocalDate.now()).getYears() > 100){
+                exceptionThrown = true;
+                throw new UserInputException(TextColor.ANSI_RED + "Error: You can't inform a date that old." + TextColor.ANSI_RESET);
+            }
+            exceptionThrown = false;
+            return formattedDate;
+        }catch(DateTimeParseException e){
+            exceptionThrown = true;
+            throw new UserInputException(TextColor.ANSI_RED + "Error: Invalid date format." + TextColor.ANSI_RESET);
+        }
     }
 
 }
