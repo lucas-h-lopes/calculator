@@ -43,3 +43,5 @@ Finally, you have the option to either continue running the program or end, whic
 <img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/answer-yes.png" alt="answer-y" width="300">
 
 <img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/answer-no.png" alt="answer-n" width="300">
+
+<img src="https://i.imgur.com/61VFlei.png" alt="list-calculations" width="300">
