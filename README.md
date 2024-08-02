@@ -34,12 +34,12 @@ Finally, you have the option to either continue running the program or end, whic
 
 ## Screenshots 📸
 
-<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/person-object.png" alt="person-object" width="300">
+<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/person-object.png" alt="person-object">
 
-<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/operation-enum.png" alt="operation" width="300">
+<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/operation-enum.png" alt="operation">
 
-<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/numbers-and-result.png" alt="number-result" width="300">
+<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/numbers-and-result.png" alt="number-result">
 
-<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/answer-yes.png" alt="answer-y" width="300">
+<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/answer-yes.png" alt="answer-y">
 
-<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/answer-no.png" alt="answer-n" width="300">
+<img src="https://raw.githubusercontent.com/lucas-h-lopes/calculator/main/images/program-execution/answer-no.png" alt="answer-n">
